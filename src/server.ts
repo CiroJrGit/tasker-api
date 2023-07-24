@@ -1,7 +1,7 @@
 import fastify from 'fastify';
 import cors from '@fastify/cors';
-// import jwt from '@fastify/jwt';
-// import { authRoutes } from './routes/auth';
+import jwt from '@fastify/jwt';
+import { authRoutes } from './routes/auth';
 // import { tasksRoute } from './routes/tasks';
 // import { tasklistsRoute } from './routes/tasklists';
 
@@ -11,11 +11,11 @@ app.register(cors, {
   origin: true,
 });
 
-// app.register(jwt, {
-//   secret: 'taskrwebtoken',
-// });
+app.register(jwt, {
+  secret: 'taskrwebtoken',
+});
 
-// app.register(authRoutes);
+app.register(authRoutes);
 // app.register(tasksRoute);
 // app.register(tasklistsRoute);
 
