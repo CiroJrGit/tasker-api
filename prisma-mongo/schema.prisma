@@ -41,6 +41,7 @@ model Note {
   id        String   @id @default(uuid()) @map("_id")
   userId    String
   title     String
+  content   String
   createdAt DateTime @default(now())
   color     String
   deleted   Boolean  @default(false)

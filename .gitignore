@@ -1,5 +1,14 @@
+# Logs
 node_modules
 
-.env
-
+# Editor directories and files
+dev.db
 @prisma-mongo
+
+# Envs
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+.env.*
