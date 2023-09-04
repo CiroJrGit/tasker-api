@@ -63,7 +63,7 @@ export async function tasklistsRoute(app: FastifyInstance) {
       },
     });
 
-    return tasklist;
+    return tasklist.id;
   });
 
   app.put('/tasklists/:id', async (request, reply) => {
