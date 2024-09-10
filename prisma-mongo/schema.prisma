@@ -11,8 +11,9 @@ datasource db {
 model User {
   id String @id @map("_id")
 
-  taskLists TaskList[]
-  notes     Note[]
+  taskLists   TaskList[]
+  notes       Note[]
+  backgrounds Background[]
 }
 
 model TaskList {
@@ -45,6 +46,15 @@ model Note {
   createdAt DateTime @default(now())
   color     String
   deleted   Boolean  @default(false)
+
+  user User @relation(fields: [userId], references: [id])
+}
+
+model Background {
+  id       String  @id @map("_id")
+  userId   String
+  imageURL String
+  selected Boolean
 
   user User @relation(fields: [userId], references: [id])
 }
