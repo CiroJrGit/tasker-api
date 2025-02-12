@@ -6,7 +6,7 @@
     "prettier/prettier": [
       "warn",
       {
-        "semi": true,
+        "semi": false,
         "trailingComma": "all",
         "singleQuote": true,
         "printWidth": 80,

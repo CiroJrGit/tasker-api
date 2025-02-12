@@ -1,10 +1,10 @@
-import { PrismaClient } from '@prisma/client';
-import { PrismaClient as PrismaClientMongo } from '../../prisma-mongo/@prisma-mongo/prisma/client';
+import { PrismaClient as PrismaClientSqlite } from '../../prisma/generated/client-sqlite'
+import { PrismaClient as PrismaClientMongo } from '../../prisma/generated/client-mongodb'
 
-export const prisma = new PrismaClient({
+export const prismaSqlite = new PrismaClientSqlite({
   log: ['query'],
-});
+})
 
-export const prismaMongo = new PrismaClientMongo({
+export const prismaMongoDb = new PrismaClientMongo({
   log: ['query'],
-});
+})
