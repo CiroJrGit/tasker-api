@@ -3,7 +3,7 @@ node_modules
 
 # Editor directories and files
 dev.db
-generated
+prisma/generated/
 
 # Envs
 .env
