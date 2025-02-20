@@ -23,6 +23,7 @@
     "@fastify/cors": "^8.3.0",
     "@fastify/jwt": "^7.2.0",
     "@prisma/client": "^5.10.2",
+    "cloudinary": "^2.5.1",
     "fastify": "^4.20.0",
     "zod": "^3.21.4"
   }

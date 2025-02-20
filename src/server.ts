@@ -5,6 +5,7 @@ import { authRoutes } from './routes/auth'
 import { tasksRoute } from './routes/tasks'
 import { tasklistsRoute } from './routes/tasklists'
 import { notesRoute } from './routes/notes'
+import { backgroundsRoute } from './routes/backgrounds'
 
 const app = fastify()
 
@@ -20,6 +21,7 @@ app.register(authRoutes)
 app.register(tasksRoute)
 app.register(tasklistsRoute)
 app.register(notesRoute)
+app.register(backgroundsRoute)
 
 app.get('/hello', () => {
   return 'Hello World!'
