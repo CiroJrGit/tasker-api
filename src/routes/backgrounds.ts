@@ -1,7 +1,7 @@
 import { FastifyInstance } from 'fastify'
 import { prismaSqlite } from '../lib/prisma'
 // import cloudinary from '../lib/cloudinary.js'
-// import { z } from 'zod'
+import { z } from 'zod'
 
 export async function backgroundsRoute(app: FastifyInstance) {
   app.addHook('preHandler', async (request) => {
@@ -25,6 +25,7 @@ export async function backgroundsRoute(app: FastifyInstance) {
 
       const backgrounds = {
         defaultBackgrounds: DEFAULT_BACKGROUNDS,
+        defaultSystemCard: process.env.DEFAULT_BACKGROUND_DEFAULT,
         selectedBackground: user?.backgroundUrl || 'default-system',
       }
 
@@ -34,34 +35,29 @@ export async function backgroundsRoute(app: FastifyInstance) {
     }
   })
 
-  // app.put('/background/:id', async (request, reply) => {
-  //   const paramsSchema = z.object({
-  //     id: z.string().uuid(),
-  //   })
+  app.put('/background', async (request, reply) => {
+    try {
+      const bodySchema = z.object({
+        image: z.string(),
+      })
 
-  //   const { id } = paramsSchema.parse(request.params)
+      const { image } = bodySchema.parse(request.body)
 
-  //   const bodySchema = z.object({
-  //     newUrl: z.string(),
-  //   })
+      await prismaSqlite.user.update({
+        where: {
+          id: request.user.sub,
+        },
+        data: {
+          backgroundUrl: image,
+        },
+      })
 
-  //   const { newUrl } = bodySchema.parse(request.body)
-
-  //   try {
-  //     const user = await prismaSqlite.user.update({
-  //       where: {
-  //         id,
-  //       },
-  //       data: {
-  //         backgroundUrl: newUrl,
-  //       },
-  //     })
-
-  //     reply.status(200).send(user)
-  //   } catch (error) {
-  //     reply.status(500).send({ error: 'Failed to update backgrounds' })
-  //   }
-  // })
+      reply.status(200).send()
+    } catch (error) {
+      console.log(error)
+      reply.status(500).send({ error: 'Failed to update backgrounds' })
+    }
+  })
 
   // app.post('/background', async (request, reply) => {
   //   const bodySchema = z.object({
